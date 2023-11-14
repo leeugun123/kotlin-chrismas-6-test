@@ -7,6 +7,8 @@ class OrderUI {
         InputView().readDate()
         InputView().readMenu()
 
+        OutputView().outputStart()
+
 
     }
 
