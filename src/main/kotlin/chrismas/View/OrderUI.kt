@@ -1,15 +1,14 @@
 package chrismas.View
 
+import chrismas.Controller.DataController
+
 class OrderUI {
 
-    fun start(){
-
-        InputView().readDate()
-        InputView().readMenu()
-
+    fun orderProcess(){
+        InputView().readInfo()
+        DataController().analysisData()
         OutputView().outputStart()
-
-
     }
+
 
 }

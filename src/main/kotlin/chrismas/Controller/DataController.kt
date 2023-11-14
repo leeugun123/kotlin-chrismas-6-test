@@ -16,6 +16,10 @@ class DataController {
     }//메뉴 파싱
 
 
+    fun analysisData(){
+
+    }
+
 
 
 
