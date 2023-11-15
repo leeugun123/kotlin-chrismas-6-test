@@ -35,17 +35,10 @@ object ExceptionHandle {
     }
 
 
-
-
     private fun searchBeverage(): Boolean {
-
-        for ((name) in UserInputData.menuMap) {
-            if(!MenuPrice.beverageMap.containsKey(name))
-                return true
-        }
-
-        return false
+        return UserInputData.menuMap.keys.any { it !in MenuPrice.beverageMap }
     }
+
 
 
     private fun checkMenuAll(menuOrder: String): Boolean {

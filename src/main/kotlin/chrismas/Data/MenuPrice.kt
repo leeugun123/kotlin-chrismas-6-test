@@ -15,7 +15,7 @@ object MenuPrice {
     }
 
     private fun appetizerMapInit(){
-        appetizerMap["양송이스프"] = 6000
+        appetizerMap["양송이수프"] = 6000
         appetizerMap["타파스"] = 5500
         appetizerMap["시저샐러드"] = 8000
     }
