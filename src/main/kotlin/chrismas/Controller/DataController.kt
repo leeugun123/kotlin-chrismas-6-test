@@ -9,13 +9,17 @@ class DataController {
 
     fun analysisData(){
 
-        calBeforeTotalMoney()
+        calBeforeTotalMoney()//
         calProvideMenu()
         calBenefitContent()
+        calTotalDiscount()
 
     }//데이터 분석 및 처리
 
-
+    private fun calTotalDiscount() {
+        UserInputData.benefitMoney =  UserInputData.dDayDiscount + UserInputData.weekendDiscount + UserInputData.weekDiscount + UserInputData.specialDiscount +
+        UserInputData.provideEventDiscount
+    }
     private fun calBeforeTotalMoney(){
 
         MenuPrice.foodInit()//음식 가격 초기화 및 세팅

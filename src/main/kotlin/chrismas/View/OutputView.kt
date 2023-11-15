@@ -40,12 +40,12 @@ class OutputView {
 
     private fun benefitContentPrint(){
         println("<혜택 내역>")
-        println(UserInputData.benefitContent + "\n")
+        println(UserInputData.benefitContent)
     }
 
     private fun benfitMoneyPrint(){
         println("<총혜택 금액>")
-        println(Parsing.plusCommaMoney(UserInputData.benefitMoney) + "원" + "\n")
+        println("-" + Parsing.plusCommaMoney(UserInputData.benefitMoney) + "원" + "\n")
     }
 
     private fun expectPayMoneyPrint(){
