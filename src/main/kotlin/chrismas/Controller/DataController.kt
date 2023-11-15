@@ -20,6 +20,7 @@ class DataController {
     fun analysisData(){
 
         calBeforeTotalMoney()
+        calProvideMenu()
 
     }//데이터 분석 및 처리
 
@@ -43,7 +44,11 @@ class DataController {
             MenuPrice.dessertMap[name]
         else
             MenuPrice.beverageMap[name])!!
+    }
 
+    private fun calProvideMenu() {
+        if(UserInputData.beforeTotalMoney >= 120000)
+            UserInputData.provideMenu = "상페인 1개"
     }
 
 

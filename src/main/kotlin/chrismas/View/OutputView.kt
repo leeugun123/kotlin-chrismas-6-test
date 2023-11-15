@@ -29,7 +29,7 @@ class OutputView {
 
     private fun beforeDiscountTotalMoneyPrint(){
         println("<할인 전 총주문 금액>")
-        println("${UserInputData.beforeTotalMoney}원" + "\n")
+        println(plusCommaMoney(UserInputData.beforeTotalMoney) + "원" + "\n")
     }
 
     private fun provideMenuPrint(){
@@ -44,12 +44,12 @@ class OutputView {
 
     private fun benfitMoneyPrint(){
         println("<총혜택 금액>")
-        println("${UserInputData.benefitMoney}원" + "\n")
+        println(plusCommaMoney(UserInputData.benefitMoney) + "원" + "\n")
     }
 
     private fun expectPayMoneyPrint(){
         println("<할인 후 예상 결제 금액>")
-        println("${UserInputData.expectMoney}원" + "\n")
+        println(plusCommaMoney(UserInputData.expectMoney)+ "원" + "\n")
     }
 
     private fun eventBadgePrint(){
@@ -57,6 +57,9 @@ class OutputView {
         println(UserInputData.badge)
     }
 
+    private fun plusCommaMoney(money: Int): String {
+        return String.format("%,d", money)
+    }
 
 
 }
