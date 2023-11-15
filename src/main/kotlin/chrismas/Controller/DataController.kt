@@ -33,8 +33,6 @@ class DataController {
     }
     private fun calBeforeTotalMoney(){
 
-        MenuPrice.foodInit()//음식 가격 초기화 및 세팅
-
         for ((name, count) in UserInputData.menuMap) {
             UserInputData.beforeTotalMoney += menuSearching(name) * count
         }
