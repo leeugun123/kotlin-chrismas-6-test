@@ -14,13 +14,12 @@ class DataController {
         calBenefitContent()
         calTotalDiscount()
         calExpectMoney()
+        calBadge()
 
     }//데이터 분석 및 처리
 
-    private fun calExpectMoney() {
 
-        println(UserInputData.beforeTotalMoney)
-        println(UserInputData.benefitMoney)
+    private fun calExpectMoney() {
 
         UserInputData.expectMoney = UserInputData.beforeTotalMoney - UserInputData.benefitMoney
 
@@ -163,6 +162,17 @@ class DataController {
         if (discountAmount != 0) {
             append("$title: -${Parsing.plusCommaMoney(discountAmount)}원\n")
         }
+    }
+
+    private fun calBadge() {
+
+        UserInputData.badge = when {
+            UserInputData.benefitMoney in 5000..< 10000 -> "별"
+            UserInputData.benefitMoney in 10000..<20000 -> "트리"
+            UserInputData.benefitMoney >= 20000 -> "산타"
+            else -> "없음"
+        }
+
     }
 
 
