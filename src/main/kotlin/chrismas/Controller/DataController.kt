@@ -13,8 +13,20 @@ class DataController {
         calProvideMenu()
         calBenefitContent()
         calTotalDiscount()
+        calExpectMoney()
 
     }//데이터 분석 및 처리
+
+    private fun calExpectMoney() {
+
+        println(UserInputData.beforeTotalMoney)
+        println(UserInputData.benefitMoney)
+
+        UserInputData.expectMoney = UserInputData.beforeTotalMoney - UserInputData.benefitMoney
+
+        if(UserInputData.provideMenu != "없음")
+            UserInputData.expectMoney += 25000
+    }
 
     private fun calTotalDiscount() {
         UserInputData.benefitMoney =  UserInputData.dDayDiscount + UserInputData.weekendDiscount + UserInputData.weekDiscount + UserInputData.specialDiscount +
