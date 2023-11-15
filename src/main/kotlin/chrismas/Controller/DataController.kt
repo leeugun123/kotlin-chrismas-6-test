@@ -9,28 +9,18 @@ class DataController {
 
     fun analysisData(){
 
-        calBeforeTotalMoney()//
+        calBeforeTotalMoney()
         calProvideMenu()
-        calBenefitContent()
+
+        if(10000 <= UserInputData.beforeTotalMoney)
+            calBenefitContent()
+
         calTotalDiscount()
         calExpectMoney()
         calBadge()
 
     }//데이터 분석 및 처리
 
-
-    private fun calExpectMoney() {
-
-        UserInputData.expectMoney = UserInputData.beforeTotalMoney - UserInputData.benefitMoney
-
-        if(UserInputData.provideMenu != "없음")
-            UserInputData.expectMoney += 25000
-    }
-
-    private fun calTotalDiscount() {
-        UserInputData.benefitMoney =  UserInputData.dDayDiscount + UserInputData.weekendDiscount + UserInputData.weekDiscount + UserInputData.specialDiscount +
-        UserInputData.provideEventDiscount
-    }
     private fun calBeforeTotalMoney(){
 
         for ((name, count) in UserInputData.menuMap) {
@@ -51,10 +41,12 @@ class DataController {
             MenuPrice.beverageMap[name])!!
     }
 
+
     private fun calProvideMenu() {
         if(UserInputData.beforeTotalMoney >= 120000)
             UserInputData.provideMenu = "샴페인 1개"
     }
+
 
     private fun calBenefitContent() {
 
@@ -161,6 +153,21 @@ class DataController {
             append("$title: -${Parsing.plusCommaMoney(discountAmount)}원\n")
         }
     }
+
+    private fun calTotalDiscount() {
+        UserInputData.benefitMoney =  UserInputData.dDayDiscount + UserInputData.weekendDiscount + UserInputData.weekDiscount + UserInputData.specialDiscount +
+                UserInputData.provideEventDiscount
+    }
+
+    private fun calExpectMoney() {
+
+        UserInputData.expectMoney = UserInputData.beforeTotalMoney - UserInputData.benefitMoney
+
+        if(UserInputData.provideMenu != "없음")
+            UserInputData.expectMoney += 25000
+    }
+
+
 
     private fun calBadge() {
 

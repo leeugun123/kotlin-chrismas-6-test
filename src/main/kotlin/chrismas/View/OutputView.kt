@@ -43,10 +43,14 @@ class OutputView {
         println(UserInputData.benefitContent)
     }
 
-    private fun benfitMoneyPrint(){
+    private fun benfitMoneyPrint() {
         println("<총혜택 금액>")
-        println("-" + Parsing.plusCommaMoney(UserInputData.benefitMoney) + "원" + "\n")
+        val benefitMoneyString = Parsing.plusCommaMoney(UserInputData.benefitMoney)
+
+        val result = if (UserInputData.benefitMoney >= 10000) "-$benefitMoneyString"+ "원\n" else benefitMoneyString + "원\n"
+        println(result)
     }
+
 
     private fun expectPayMoneyPrint(){
         println("<할인 후 예상 결제 금액>")
@@ -55,7 +59,7 @@ class OutputView {
 
     private fun eventBadgePrint(){
         println("<12월 이벤트 배지>")
-        println(UserInputData.badge)
+        print(UserInputData.badge)
     }
 
 

@@ -8,7 +8,7 @@ object UserInputData {
     var beforeTotalMoney = 0 //할인 전 총 주문 금액
     var provideMenu = "없음" // 증정 메뉴
 
-    var benefitContent = "없음" //혜택 내역
+    var benefitContent = "없음\n" //혜택 내역
 
     var dDayDiscount = 0 //크리스마스 디데이 할인
     var weekDiscount = 0 //평일 할인
