@@ -3,6 +3,7 @@ package chrismas.View
 import camp.nextstep.edu.missionutils.Console
 import chrismas.Controller.DataController
 import chrismas.Data.UserInputData
+import chrismas.ExceptionMangement.ExceptionHandle
 import chrismas.Util.Parsing
 
 
@@ -14,9 +15,11 @@ class InputView {
     }
 
     private fun readDate(){
-        println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.")
-        println("12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)")
-        UserInputData.inputDate = Console.readLine().toInt()
+
+        startGuide()
+        checkReadDateInput()
+
+
     }
 
     private fun readMenu(){
@@ -25,6 +28,26 @@ class InputView {
         Parsing.menuParsing(menuTuple)
     }
 
+    private fun startGuide(){
+        println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.")
+        println("12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)")
+    }
+
+    private fun checkReadDateInput(){
+
+        while(true){
+            try {
+                val date = Console.readLine()
+                ExceptionHandle.checkDate(date)
+                UserInputData.inputDate = date.toInt()
+                return
+            }catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+
+        }
+
+    }
 
 
 
