@@ -133,19 +133,22 @@ class DataController {
 
     private fun discountConcat() {
 
-        UserInputData.benefitContent = ""
+        UserInputData.benefitContent = buildString {
+            appendDiscount("크리스마스 디데이 할인", UserInputData.dDayDiscount)
+            appendDiscount("평일 할인", UserInputData.weekDiscount)
+            appendDiscount("주말 할인", UserInputData.weekendDiscount)
+            appendDiscount("특별 할인", UserInputData.specialDiscount)
+            appendDiscount("증정 이벤트", UserInputData.provideEventDiscount)
+        }
 
-        if(UserInputData.dDayDiscount != 0)
-            UserInputData.benefitContent += "크리스마스 디데이 할인: -" + Parsing.plusCommaMoney(UserInputData.dDayDiscount) + "원\n"
-        if(UserInputData.weekDiscount != 0)
-            UserInputData.benefitContent += "평일 할인: -" + Parsing.plusCommaMoney(UserInputData.weekDiscount) + "원\n"
-        if(UserInputData.weekendDiscount != 0)
-            UserInputData.benefitContent += "주말 할인: -" + Parsing.plusCommaMoney(UserInputData.weekendDiscount) + "원\n"
-        if(UserInputData.specialDiscount!= 0)
-            UserInputData.benefitContent += "특별 할인: -" + Parsing.plusCommaMoney(UserInputData.specialDiscount) + "원\n"
-        if(UserInputData.provideEventDiscount!= 0)
-            UserInputData.benefitContent += "증정 이벤트: -" + Parsing.plusCommaMoney(UserInputData.provideEventDiscount) + "원"
     }
+
+    private fun StringBuilder.appendDiscount(title: String, discountAmount: Int) {
+        if (discountAmount != 0) {
+            append("$title: -${Parsing.plusCommaMoney(discountAmount)}원\n")
+        }
+    }
+
 
 
 }
