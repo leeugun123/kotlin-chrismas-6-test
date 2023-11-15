@@ -10,16 +10,16 @@ class OutputView {
     }
 
     private fun printBenfitInfo(){
-        orderMenu()
-        beforeDiscountTotalMoney()
-        provideMenu()
-        benefitContent()
-        benfitMoney()
-        expectPayMoney()
-        eventBadge()
+        orderMenuPrint()
+        beforeDiscountTotalMoneyPrint()
+        provideMenuPrint()
+        benefitContentPrint()
+        benfitMoneyPrint()
+        expectPayMoneyPrint()
+        eventBadgePrint()
     }
 
-    private fun orderMenu(){
+    private fun orderMenuPrint(){
         println("<주문 메뉴>")
         for ((name, count) in UserInputData.menuMap) {
             println("$name $count" + "개")
@@ -27,32 +27,32 @@ class OutputView {
         println()
     }
 
-    private fun beforeDiscountTotalMoney(){
+    private fun beforeDiscountTotalMoneyPrint(){
         println("<할인 전 총주문 금액>")
         println("${UserInputData.beforeTotalMoney}원" + "\n")
     }
 
-    private fun provideMenu(){
+    private fun provideMenuPrint(){
         println("<증정 메뉴>")
         println(UserInputData.provideMenu + "\n")
     }
 
-    private fun benefitContent(){
+    private fun benefitContentPrint(){
         println("<혜택 내역>")
         println(UserInputData.benefitContent + "\n")
     }
 
-    private fun benfitMoney(){
+    private fun benfitMoneyPrint(){
         println("<총혜택 금액>")
         println("${UserInputData.benefitMoney}원" + "\n")
     }
 
-    private fun expectPayMoney(){
+    private fun expectPayMoneyPrint(){
         println("<할인 후 예상 결제 금액>")
         println("${UserInputData.expectMoney}원" + "\n")
     }
 
-    private fun eventBadge(){
+    private fun eventBadgePrint(){
         println("<12월 이벤트 배지>")
         println(UserInputData.badge)
     }
