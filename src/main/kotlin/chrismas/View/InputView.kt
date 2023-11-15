@@ -73,6 +73,7 @@ class InputView {
         ExceptionHandle.checkMenuInput(menuTuple)
         Parsing.menuParsing(menuTuple)
         ExceptionHandle.checkOnlyBeverage()
+        ExceptionHandle.checkExcessOrderCount()
 
     }
 
