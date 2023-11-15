@@ -37,9 +37,7 @@ class InputView {
 
         while(true){
             try {
-                val date = Console.readLine()
-                ExceptionHandle.checkDate(date)
-                UserInputData.inputDate = date.toInt()
+                checkDataExceptionHandle()
                 return
             }catch (e: IllegalArgumentException) {
                 println(e.message)
@@ -50,21 +48,33 @@ class InputView {
     }
 
     private fun checkReadMenuInput(){
-
         while(true){
             try {
-                val menuTuple = Console.readLine()
-                ExceptionHandle.checkMenuInput(menuTuple)
-                Parsing.menuParsing(menuTuple)
+                checkMenuExceptionHandle()
                 return
             }catch (e: IllegalArgumentException) {
                 println(e.message)
             }
 
         }
+    }
+
+    private fun checkDataExceptionHandle(){
+
+        val date = Console.readLine()
+        ExceptionHandle.checkDate(date)
+        UserInputData.inputDate = date.toInt()
 
     }
 
+    private fun checkMenuExceptionHandle(){
+
+        val menuTuple = Console.readLine()
+        ExceptionHandle.checkMenuInput(menuTuple)
+        Parsing.menuParsing(menuTuple)
+        ExceptionHandle.checkOnlyBeverage()
+
+    }
 
 
 
