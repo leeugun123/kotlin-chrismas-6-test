@@ -26,9 +26,9 @@ object ExceptionHandle {
 
         for (entry in menuOrder.split(",")) {
             val (menu, countStr) = entry.split("-")
-            val count = countStr.toIntOrNull()
+            val count = countStr.toInt()
 
-            if (count == null || count <= 0 || !uniqueMenus.add(menu) || !checkExistMenu(menu)) {
+            if (count <= 0 || !uniqueMenus.add(menu) || !checkExistMenu(menu)) {
                 return false
             }
 
@@ -38,7 +38,6 @@ object ExceptionHandle {
 
 
     private fun checkExistMenu(menu: String) = menu in MenuPrice.appetizerMap + MenuPrice.mainMap + MenuPrice.dessertMap + MenuPrice.beverageMap
-
 
     private fun checkValidDate(date : String) = date.toIntOrNull() != null
 
