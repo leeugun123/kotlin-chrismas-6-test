@@ -13,6 +13,11 @@ object ExceptionHandle {
     private const val ONLY_ORDER_BEVERAGE = "$ERROR 음료수만 주문 할 수는 없습니다.$INPUT_AGAIN"
     private const val EXCESS_ORDER_COUNT = "$ERROR 주문 개수를 20개를 넘어서 주문 할 수는 없습니다.$INPUT_AGAIN"
 
+
+    private const val DECEMBER_DATE_START = 1
+    private const val DECEMBER_DATE_END = 31
+    private const val ORDER_COUNT_LIMIT = 20
+
     fun checkDate(date : String){
         require(checkValidDate(date)){ INVALID_FORMAT}
         require(checkDateInRange(date)){ WRONG_DATE}
@@ -30,15 +35,10 @@ object ExceptionHandle {
         require(searchCount()){EXCESS_ORDER_COUNT}
     }
 
-    private fun searchCount(): Boolean {
-        return UserInputData.menuMap.values.sum() <= 20
-    }
+    private fun searchCount() = UserInputData.menuMap.values.sum() <= ORDER_COUNT_LIMIT
 
 
-    private fun searchBeverage(): Boolean {
-        return UserInputData.menuMap.keys.any { it !in MenuPrice.beverageMap }
-    }
-
+    private fun searchBeverage() = UserInputData.menuMap.keys.any { it !in MenuPrice.beverageMap }
 
 
     private fun checkMenuAll(menuOrder: String): Boolean {
@@ -61,9 +61,9 @@ object ExceptionHandle {
 
     private fun checkValidDate(date : String) = date.toIntOrNull() != null
 
-    private fun checkDateInRange(date : String) = date.toInt() in 1..31
+    private fun checkDateInRange(date : String) = date.toInt() in DECEMBER_DATE_START..DECEMBER_DATE_END
 
-    private fun checkValidMenuFormat(menu : String) : Boolean = Regex("""^[a-zA-Z가-힣]+\-\d+(,[a-zA-Z가-힣]+\-\d+)*$""").matches(menu)
+    private fun checkValidMenuFormat(menu : String) = Regex("""^[a-zA-Z가-힣]+\-\d+(,[a-zA-Z가-힣]+\-\d+)*$""").matches(menu)
 
 
 

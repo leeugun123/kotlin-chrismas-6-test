@@ -174,13 +174,11 @@ class DataController {
     }
 
 
-    private fun discountCheck(): Boolean {
-        return UserInputData.dDayDiscount != 0 ||
-                UserInputData.weekDiscount != 0 ||
-                UserInputData.weekendDiscount != 0 ||
-                UserInputData.specialDiscount != 0 ||
-                UserInputData.provideEventDiscount != 0
-    }
+    private fun discountCheck() = UserInputData.dDayDiscount != 0 ||
+                                  UserInputData.weekDiscount != 0 ||
+                                  UserInputData.weekendDiscount != 0 ||
+                                  UserInputData.specialDiscount != 0 ||
+                                  UserInputData.provideEventDiscount != 0
 
 
     private fun discountConcat() {

@@ -15,9 +15,7 @@ object Parsing {
 
     }//메뉴 파싱
 
-    fun plusCommaMoney(money: Int): String {
-        return String.format("%,d", money)
-    }
+    fun plusCommaMoney(money: Int) = String.format("%,d", money)
 
 
 
