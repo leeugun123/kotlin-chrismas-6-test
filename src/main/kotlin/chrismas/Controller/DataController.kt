@@ -3,11 +3,20 @@ package chrismas.Controller
 import chrismas.Data.MenuPrice
 import chrismas.Data.UserInputData
 import chrismas.Util.Parsing
+import chrismas.View.InputView
+import chrismas.View.OutputView
 
 class DataController {
 
+    fun orderProcess(){
+        InputView().readInfo()
+        analysisData()
+        OutputView().outputStart()
+    }
 
-    fun analysisData(){
+
+
+    private fun analysisData(){
 
         calBeforeTotalMoney()
         calProvideMenu()

@@ -1,9 +1,7 @@
 package chrismas
 
-import chrismas.View.OrderUI
+import chrismas.Controller.DataController
 
 fun main(args: Array<String>) {
-
-    OrderUI().orderProcess()
-
+    DataController().orderProcess()
 }
