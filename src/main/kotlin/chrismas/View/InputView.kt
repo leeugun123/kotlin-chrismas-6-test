@@ -10,6 +10,12 @@ import chrismas.Util.Parsing
 
 class InputView {
 
+    companion object{
+        private const val START_GUIDE =  "안녕하세요! 우테코 식당 12월 이벤트 플래너입니다."
+        private const val VISIT_DATE_QUESTION_GUIDE = "12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)"
+        private const val ORDER_MENU_QUESTION_GUIDE = "주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)"
+    }
+
     fun readInfo(){
         readDate()
         readMenu()
@@ -27,11 +33,12 @@ class InputView {
     }
 
     private fun startGuide(){
-        println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.")
-        println("12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)")
+        println(START_GUIDE)
+        println(VISIT_DATE_QUESTION_GUIDE)
+
     }
 
-    private fun menuGuide(){ println("주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)")}
+    private fun menuGuide(){ println(ORDER_MENU_QUESTION_GUIDE)}
 
     private fun checkReadDateInput(){
 
@@ -52,10 +59,7 @@ class InputView {
             try {
                 checkMenuExceptionHandle()
                 return
-            }catch (e: IllegalArgumentException) {
-                println(e.message)
-            }
-
+            }catch (e: IllegalArgumentException) { println(e.message) }
         }
     }
 
