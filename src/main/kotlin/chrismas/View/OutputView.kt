@@ -1,6 +1,6 @@
 package chrismas.View
 
-import chrismas.Data.UserInputData
+import chrismas.Model.UserInputData
 import chrismas.Util.Parsing
 
 class OutputView {

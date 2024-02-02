@@ -1,4 +1,4 @@
-package chrismas.Data
+package chrismas.Model
 
 object MenuPrice {
 

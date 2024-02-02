@@ -1,6 +1,6 @@
 package chrismas.Util
 
-import chrismas.Data.UserInputData
+import chrismas.Model.UserInputData
 
 object Parsing {
 

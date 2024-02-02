@@ -1,7 +1,7 @@
 package chrismas.ExceptionMangement
 
-import chrismas.Data.MenuPrice
-import chrismas.Data.UserInputData
+import chrismas.Model.MenuPrice
+import chrismas.Model.UserInputData
 
 object ExceptionHandle {
 
