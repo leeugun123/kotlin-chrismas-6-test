@@ -8,6 +8,44 @@ import chrismas.View.OutputView
 
 class DataController {
 
+    companion object{
+
+        private const val CHAMPAGNE_ONE_GUIDE = "샴페인 1개"
+        private const val EVENT_HAPPEN_LEAST_PRICE = 10000
+        private const val PROVIDE_CHAMPAGNE_LEAST_PRICE = 120000
+
+        private const val EVENT_START_DATE = 1
+        private const val EVENT_END_DATE = 25
+
+        private const val SPECIAL_DISCOUNT_PRICE = 1000
+        private const val CHAMPAGNE_PRICE = 25000
+
+        private const val NOTHING = "없음"
+
+        private const val STAR = "별"
+        private const val TREE = "트리"
+        private const val SANTA = "산타"
+
+        private const val CHRISTMAS_DAY_DISCOUNT = "크리스마스 디데이 할인"
+        private const val WEEKDAY_DAY_DISCOUNT = "평일 할인"
+        private const val WEEKEND_DAY_DISCOUNT = "주말 할인"
+        private const val SPECIAL_DISCOUNT = "특별 할인"
+        private const val PROVIDE_EVENT = "증정 이벤트"
+
+
+        private const val STAR_BADGE_START_PRICE = 5000
+        private const val STAR_BADGE_END_PRICE = 10000
+
+        private const val TREE_BADGE_START_PRICE = 10000
+        private const val TREE_BADGE_END_PRICE = 20000
+
+        private const val SANTA_BADGE_START_PRICE = 20000
+
+        private const val DISCOUNT_START_PRICE = 1000
+        private const val INCREASE_DAY_PRICE = 100
+
+    }
+
     fun orderProcess(){
         InputView().readInfo()
         analysisData()
@@ -21,7 +59,7 @@ class DataController {
         calBeforeTotalMoney()
         calProvideMenu()
 
-        if(10000 <= UserInputData.beforeTotalMoney)
+        if(EVENT_HAPPEN_LEAST_PRICE <= UserInputData.beforeTotalMoney)
             calBenefitContent()
 
         calTotalDiscount()
@@ -52,8 +90,8 @@ class DataController {
 
 
     private fun calProvideMenu() {
-        if(UserInputData.beforeTotalMoney >= 120000)
-            UserInputData.provideMenu = "샴페인 1개"
+        if(UserInputData.beforeTotalMoney >= PROVIDE_CHAMPAGNE_LEAST_PRICE)
+            UserInputData.provideMenu = CHAMPAGNE_ONE_GUIDE
     }
 
 
@@ -72,8 +110,8 @@ class DataController {
 
     private fun calDdayDiscount() {
 
-        if(UserInputData.inputDate in 1..25){
-            UserInputData.dDayDiscount = 1000 + (UserInputData.inputDate - 1) * 100
+        if(UserInputData.inputDate in EVENT_START_DATE..EVENT_END_DATE){
+            UserInputData.dDayDiscount = DISCOUNT_START_PRICE + (UserInputData.inputDate - 1) * INCREASE_DAY_PRICE
         }
 
     }
@@ -101,9 +139,9 @@ class DataController {
     private fun calWeekendDayDiscount() {
 
         val inputDate = UserInputData.inputDate
-        val datePatterns = listOf(1, 8 , 15, 22, 29)
+        val weekendDatePatterns = listOf(1, 8 , 15, 22, 29)
 
-        if (inputDate in datePatterns.flatMap { it..it+1 }) {
+        if (inputDate in weekendDatePatterns.flatMap { it..it+1 }) {
             mainMenuSearch()
         }
 
@@ -121,18 +159,18 @@ class DataController {
     private fun calSpecialDiscount() {
 
         val inputDate = UserInputData.inputDate
-        val datePatterns = listOf(3, 10 , 17, 24, 25, 31)
+        val specialDatePatterns = listOf(3, 10 , 17, 24, 25, 31)
 
-        if(inputDate in datePatterns){
-            UserInputData.specialDiscount = 1000
+        if(inputDate in specialDatePatterns){
+            UserInputData.specialDiscount = SPECIAL_DISCOUNT_PRICE
         }
 
 
     }
 
     private fun calProvideDiscount() {
-        if(UserInputData.provideMenu != "없음")
-            UserInputData.provideEventDiscount = 25000
+        if(UserInputData.provideMenu != NOTHING)
+            UserInputData.provideEventDiscount = CHAMPAGNE_PRICE
     }
 
 
@@ -148,14 +186,16 @@ class DataController {
     private fun discountConcat() {
 
         UserInputData.benefitContent = buildString {
-            appendDiscount("크리스마스 디데이 할인", UserInputData.dDayDiscount)
-            appendDiscount("평일 할인", UserInputData.weekDiscount)
-            appendDiscount("주말 할인", UserInputData.weekendDiscount)
-            appendDiscount("특별 할인", UserInputData.specialDiscount)
-            appendDiscount("증정 이벤트", UserInputData.provideEventDiscount)
+            appendDiscount(CHRISTMAS_DAY_DISCOUNT, UserInputData.dDayDiscount)
+            appendDiscount(WEEKDAY_DAY_DISCOUNT, UserInputData.weekDiscount)
+            appendDiscount(WEEKEND_DAY_DISCOUNT, UserInputData.weekendDiscount)
+            appendDiscount(SPECIAL_DISCOUNT, UserInputData.specialDiscount)
+            appendDiscount(PROVIDE_EVENT, UserInputData.provideEventDiscount)
         }
 
     }
+
+
 
     private fun StringBuilder.appendDiscount(title: String, discountAmount: Int) {
         if (discountAmount != 0) {
@@ -172,8 +212,8 @@ class DataController {
 
         UserInputData.expectMoney = UserInputData.beforeTotalMoney - UserInputData.benefitMoney
 
-        if(UserInputData.provideMenu != "없음")
-            UserInputData.expectMoney += 25000
+        if(UserInputData.provideMenu != NOTHING)
+            UserInputData.expectMoney += CHAMPAGNE_PRICE
     }
 
 
@@ -181,13 +221,16 @@ class DataController {
     private fun calBadge() {
 
         UserInputData.badge = when {
-            UserInputData.benefitMoney in 5000..< 10000 -> "별"
-            UserInputData.benefitMoney in 10000..<20000 -> "트리"
-            UserInputData.benefitMoney >= 20000 -> "산타"
-            else -> "없음"
+            UserInputData.benefitMoney in STAR_BADGE_START_PRICE..STAR_BADGE_END_PRICE -> STAR
+            UserInputData.benefitMoney in TREE_BADGE_START_PRICE..<TREE_BADGE_END_PRICE -> TREE
+            UserInputData.benefitMoney >= SANTA_BADGE_START_PRICE -> SANTA
+            else -> NOTHING
         }
 
     }
+
+
+
 
 
 

@@ -16,8 +16,6 @@ object UserInputData {
     var specialDiscount = 0 //특별 할인
     var provideEventDiscount = 0 // 증정 이벤트
 
-
-
     var benefitMoney = 0 //총혜택 금액
     var expectMoney = 0 // 할인 후 예상 결제 금액
     var badge = "" // 12월 이벤트 배지
